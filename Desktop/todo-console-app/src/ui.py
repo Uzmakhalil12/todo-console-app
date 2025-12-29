@@ -35,16 +35,16 @@ class TodoUI:
         Returns:
             The user's menu choice (1-6).
         """
-        print("\n=== Todo Menu ===")
-        print("1. Add Task")
-        print("2. View Tasks")
-        print("3. Update Task")
-        print("4. Delete Task")
-        print("5. Mark Complete")
-        print("6. Exit")
+        print("\n=== TODO APP ===")
+        print("Add Task")
+        print("View Tasks")
+        print("Update Task")
+        print("Delete Task")
+        print("Mark Complete")
+        print("Exit")
 
         while True:
-            choice = input("Enter your choice (1-6): ").strip()
+            choice = input("Enter choice: ").strip()
             if choice.isdigit() and 1 <= int(choice) <= 6:
                 return int(choice)
             print("Please enter a number between 1 and 6")
@@ -53,7 +53,7 @@ class TodoUI:
         """Handle the add task workflow."""
         print("\n--- Add Task ---")
 
-        title = self.get_input("Enter task title: ").strip()
+        title = self.get_input("Title: ").strip()
         if not title:
             self.show_error("Title cannot be empty")
             return
@@ -62,7 +62,7 @@ class TodoUI:
             self.show_error("Title must be 100 characters or less")
             return
 
-        description = self.get_input("Enter description (optional): ").strip()
+        description = self.get_input("Description: ").strip()
 
         if len(description) > 500:
             self.show_error("Description must be 500 characters or less")
@@ -70,9 +70,7 @@ class TodoUI:
 
         try:
             task = self._service.create_task(title, description)
-            print(f"\nTask created successfully!")
-            print(f"Task ID: {task.id}")
-            print(f"Title: {task.title}")
+            print(f"✓ Task added successfully! [ID: {task.id}]")
         except ValidationError as e:
             self.show_error(str(e))
 
@@ -189,15 +187,15 @@ class TodoUI:
             print("No tasks found")
             return
 
-        print(f"\n{'ID':<4} {'Title':<30} {'Status':<12} {'Date'}")
-        print("-" * 60)
+        print(f"\n{'ID':<4} | {'Title':<15} | {'Status':<10} | {'Created'}")
+        print("-" * 45)
 
         for task in tasks:
-            status_indicator = "[ ]" if task.status == TaskStatus.PENDING else "[✓]"
-            status = f"{status_indicator} {task.status.value}"
-            date_str = task.created_at.strftime("%Y-%m-%d %H:%M")
-            title = task.title[:28] + ".." if len(task.title) > 30 else task.title
-            print(f"{task.id:<4} {title:<30} {status:<12} {date_str}")
+            status_indicator = "[✓]" if task.status == TaskStatus.COMPLETE else "[ ]"
+            status_text = "Done" if task.status == TaskStatus.COMPLETE else "Todo"
+            date_str = task.created_at.strftime("%Y-%m-%d")
+            title = task.title[:13] + ".." if len(task.title) > 15 else task.title
+            print(f"{task.id:<4} | {title:<15} | {status_indicator} {status_text:<5} | {date_str}")
 
     def get_input(self, prompt: str) -> str:
         """Get user input with a prompt.

@@ -1,33 +1,76 @@
-# Todo Console App
+# Hackathon II - Phase I: Todo Console App
 
-A simple command-line todo list application built with Python 3.13+.
+## Overview
+
+Command-line todo application built using Spec-Driven Development with Claude Code and SpecifyPlus.
 
 ## Features
 
-- **Add Task**: Create tasks with title and optional description
-- **View Tasks**: Display all tasks in a formatted table
-- **Update Task**: Modify task title and/or description
-- **Delete Task**: Remove tasks with confirmation
-- **Mark Complete**: Toggle task status between Pending and Complete
-- **Main Menu**: Numbered menu (1-6) for easy navigation
+1. **Add Task** - Create new todos with title and optional description
+2. **View Task List** - See all tasks in a formatted table with status indicators
+3. **Update Task** - Modify task title and/or description by ID
+4. **Delete Task** - Remove tasks with Y/N confirmation
+5. **Mark Complete** - Toggle task status between Pending and Complete
+6. **Main Menu** - Numbered menu (1-6) for easy navigation
 
-## Installation
+## Technology Stack
+
+- Python 3.13+
+- UV Package Manager
+- SpecifyPlus
+- Claude Code
+
+## Project Structure
+
+```
+hackathon-todo-console/
+├── specs/
+│   ├── 001-add-task/
+│   ├── 002-view-task-list/
+│   ├── 003-update-task/
+│   ├── 004-delete-task/
+│   ├── 005-mark-complete/
+│   └── 006-main-menu/
+├── src/
+│   ├── models.py       # Task dataclass, TaskStatus enum
+│   ├── storage.py      # TaskStorage class (in-memory dict)
+│   ├── services.py     # TodoService (business logic)
+│   ├── ui.py           # TodoUI (CLI interface)
+│   └── main.py         # Entry point
+├── tests/
+│   ├── test_models.py
+│   ├── test_storage.py
+│   └── test_services.py
+├── plan.md
+├── tasks.md
+├── quickstart.md
+└── README.md
+```
+
+## Setup & Run
+
+### Prerequisites
+
+- Python 3.13+
+- UV installed
+
+### Installation
 
 ```bash
-# Clone the repository
-cd todo-console-app
+git clone <your-repo>
+cd hackathon-todo-console
+uv sync
+```
 
-# Run directly with Python
-python src/main.py
+### Run Application
+
+```bash
+uv run python src/main.py
 ```
 
 ## Usage
 
-Run the application:
-
-```bash
-python src/main.py
-```
+### Main Menu
 
 The application presents a numbered menu:
 
@@ -75,37 +118,6 @@ Enter your choice (1-6):
 2. Enter task ID
 3. Status toggles between Pending and Complete
 
-## Project Structure
-
-```
-todo-console-app/
-├── src/
-│   ├── __init__.py      # Package init
-│   ├── models.py        # Task dataclass, TaskStatus enum
-│   ├── storage.py       # TaskStorage class (in-memory)
-│   ├── services.py      # TodoService (business logic)
-│   ├── ui.py            # TodoUI (CLI interface)
-│   └── main.py          # Entry point
-├── tests/
-│   ├── __init__.py
-│   ├── test_models.py   # Model tests
-│   ├── test_storage.py  # Storage tests
-│   └── test_services.py # Service tests
-├── plan.md              # Technical plan
-├── tasks.md             # Implementation tasks
-└── README.md            # This file
-```
-
-## Running Tests
-
-```bash
-# Run all tests
-python -m pytest tests/ -v
-
-# Run with coverage
-python -m pytest tests/ --cov=src
-```
-
 ## Architecture
 
 The application follows a strict 3-layer architecture:
@@ -114,18 +126,34 @@ The application follows a strict 3-layer architecture:
 - **Service Layer** (`services.py`): Business logic and validation
 - **Storage Layer** (`storage.py`): In-memory data persistence
 
-All operations complete in under 100ms with no external dependencies.
+### Key Design Principles
 
-## Constitution
+- **In-memory storage only** - No external databases
+- **No external dependencies** - Stdlib only
+- **Type hints mandatory** - All functions typed
+- **Docstrings required** - Google/NumPy style
+- **Max 20 lines per function** - Single Responsibility Principle
 
-This project follows the Phase I Todo Console App Constitution:
-- PEP 8 Python conventions
-- Type hints mandatory
-- Docstrings for all classes/functions
-- Max 20 lines per function
-- Single Responsibility Principle
-- In-memory storage only
-- No external dependencies
+## Error Handling
+
+All errors are handled gracefully with user-friendly messages:
+
+| Error | Message |
+|-------|---------|
+| Empty title | "Title cannot be empty" |
+| Title too long | "Title must be 100 characters or less" |
+| Invalid task ID | "Task not found" |
+| Invalid menu | "Please enter a number between 1 and 6" |
+
+## Spec-Driven Development
+
+This project was built using the SpecifyPlus workflow:
+
+1. **Constitution** (`.specify/memory/constitution.md`) - Project principles
+2. **Specification** (`specs/*/spec.md`) - Feature requirements
+3. **Plan** (`plan.md`) - Technical design
+4. **Tasks** (`tasks.md`) - Implementation breakdown
+5. **Implementation** - Code with tests
 
 ## License
 
