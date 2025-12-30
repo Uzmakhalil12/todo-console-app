@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Console App - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: #f8f8f2;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin: 5px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        .architecture {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .layer {
+            padding: 15px;
+            margin: 10px auto;
+            max-width: 500px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .layer-ui {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+        }
+        .layer-service {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+        }
+        .layer-storage {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Todo Console App</h1>
+            <p class="subtitle">A Simple Command-Line Todo List Manager</p>
+            <p style="margin-top: 20px;">
+                <span class="badge">Python 3.13+</span>
+                <span class="badge">43 Tests Passing</span>
+                <span class="badge">Spec-Driven Development</span>
+            </p>
+        </header>
+
+        <div class="section">
+            <h2>🚀 Quick Start</h2>
+            <pre><code># Clone the repository
+git clone https://github.com/Uzmakhalil12/todo-console-app.git
+cd todo-console-app
+
+# Run the application
+python src/main.py</code></pre>
+            <a href="https://github.com/Uzmakhalil12/todo-console-app" class="btn">View on GitHub</a>
+            <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+
+        <div class="section" id="features">
+            <h2>✨ Features</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>➕ Add Task</h3>
+                    <p>Create new todos with title (1-100 chars) and optional description (0-500 chars)</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👁️ View Tasks</h3>
+                    <p>See all tasks in a formatted table with status indicators and timestamps</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✏️ Update Task</h3>
+                    <p>Modify task title and/or description by ID with validation</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🗑️ Delete Task</h3>
+                    <p>Remove tasks with Y/N confirmation for safety</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✅ Mark Complete</h3>
+                    <p>Toggle task status between Pending and Complete</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Main Menu</h3>
+                    <p>Numbered menu (1-6) for easy navigation and user-friendly interface</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Project Stats</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">43</div>
+                    <div class="stat-label">Unit Tests</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Core Features</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Architecture Layers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Tests Passing</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏗️ Architecture</h2>
+            <div class="architecture">
+                <div class="layer layer-ui">UI Layer (ui.py)<br>User Input & Display</div>
+                <div>⬇️</div>
+                <div class="layer layer-service">Service Layer (services.py)<br>Business Logic & Validation</div>
+                <div>⬇️</div>
+                <div class="layer layer-storage">Storage Layer (storage.py)<br>In-Memory Data Persistence</div>
+            </div>
+            <h3>Design Principles</h3>
+            <ul>
+                <li>✅ In-memory storage only - No external databases</li>
+                <li>✅ No external dependencies - Stdlib only</li>
+                <li>✅ Type hints mandatory - All functions typed</li>
+                <li>✅ Docstrings required - Google/NumPy style</li>
+                <li>✅ Max 20 lines per function - Single Responsibility Principle</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🧪 Test Coverage</h2>
+            <pre><code>Ran 43 tests in 0.027s - OK
+
+✅ Models Tests (10 tests)
+   - Task creation with valid/invalid data
+   - Title validation (empty, max 100 chars)
+   - Description validation (max 500 chars)
+   - TaskStatus enum validation
+
+✅ Storage Tests (13 tests)
+   - Add, get, update, delete operations
+   - Sequential ID generation
+   - Task list sorting (newest first)
+   - Toggle complete status
+   - Error handling for not-found tasks
+
+✅ Service Tests (20 tests)
+   - Create task with validation
+   - List tasks (empty and populated)
+   - Update task (title/description/both)
+   - Delete task functionality
+   - Mark complete with toggle behavior
+   - All error cases (ValidationError, TaskNotFoundError)</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>📖 Usage</h2>
+            <h3>Main Menu</h3>
+            <pre><code>=== TODO APP ===
+Add Task
+View Tasks
+Update Task
+Delete Task
+Mark Complete
+Exit
+Enter choice: </code></pre>
+
+            <h3>Example: Adding a Task</h3>
+            <pre><code>Enter choice: 1
+Title: Buy groceries
+Description: Milk, bread, eggs
+✅ Task added successfully (ID: 1)</code></pre>
+
+            <h3>Example: Viewing Tasks</h3>
+            <pre><code>Enter choice: 2
+ID | Title           | Status         | Created
+1  | Buy groceries   | [ ] Pending    | 2025-12-31 10:30</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Spec-Driven Development</h2>
+            <p>This project was built using the SpecifyPlus workflow:</p>
+            <ol>
+                <li><strong>Constitution</strong> - Project principles and coding standards</li>
+                <li><strong>Specification</strong> - Feature requirements for all 6 features</li>
+                <li><strong>Plan</strong> - Technical design and architecture decisions</li>
+                <li><strong>Tasks</strong> - Implementation breakdown with test cases</li>
+                <li><strong>Implementation</strong> - Code with comprehensive tests</li>
+            </ol>
+            <p style="margin-top: 20px;">
+                All specifications, plans, and tasks are available in the
+                <a href="https://github.com/Uzmakhalil12/todo-console-app/tree/main/specs">specs/</a> directory.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>📦 Technology Stack</h2>
+            <ul>
+                <li><strong>Language:</strong> Python 3.13+</li>
+                <li><strong>Development:</strong> Claude Code + SpecifyPlus</li>
+                <li><strong>Testing:</strong> unittest (Python stdlib)</li>
+                <li><strong>Package Manager:</strong> UV (optional)</li>
+                <li><strong>Architecture:</strong> 3-layer (UI → Service → Storage)</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ using Spec-Driven Development</p>
+            <p>🤖 Generated with <a href="https://claude.com/claude-code">Claude Code</a></p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/Uzmakhalil12/todo-console-app">GitHub Repository</a> |
+                <a href="https://github.com/Uzmakhalil12/todo-console-app/issues">Report Issues</a> |
+                <a href="https://github.com/Uzmakhalil12">@Uzmakhalil12</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
