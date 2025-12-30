@@ -70,7 +70,7 @@ class TodoUI:
 
         try:
             task = self._service.create_task(title, description)
-            print(f"✓ Task added successfully! [ID: {task.id}]")
+            print(f"[+] Task added successfully! [ID: {task.id}]")
         except ValidationError as e:
             self.show_error(str(e))
 
@@ -191,7 +191,7 @@ class TodoUI:
         print("-" * 45)
 
         for task in tasks:
-            status_indicator = "[✓]" if task.status == TaskStatus.COMPLETE else "[ ]"
+            status_indicator = "[x]" if task.status == TaskStatus.COMPLETE else "[ ]"
             status_text = "Done" if task.status == TaskStatus.COMPLETE else "Todo"
             date_str = task.created_at.strftime("%Y-%m-%d")
             title = task.title[:13] + ".." if len(task.title) > 15 else task.title
