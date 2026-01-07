@@ -31,6 +31,28 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
+**Phase Verification**:
+- [ ] Confirm feature phase matches project phase (see constitution Technology Matrix)
+- [ ] Verify all technologies are allowed for current phase
+- [ ] Ensure no cross-phase dependencies or imports
+
+**Phase I Specific** (console app):
+- [ ] No external pip dependencies
+- [ ] In-memory storage only
+- [ ] No file I/O or network access
+
+**Phase II Specific** (web app):
+- [ ] Backend: Python REST API (FastAPI/Flask)
+- [ ] Database: Neon Serverless PostgreSQL
+- [ ] ORM: SQLModel or equivalent
+- [ ] Frontend: Next.js (React, TypeScript)
+- [ ] Authentication: Better Auth
+
+**Phase III+ Specific** (advanced cloud):
+- [ ] AI/agent frameworks required and approved
+- [ ] Cloud infrastructure planned
+- [ ] Orchestration strategy defined
+
 [Gates determined based on constitution file]
 
 ## Project Structure
